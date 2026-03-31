@@ -6,6 +6,7 @@
 
   imports = [
     ./programs/wezterm.nix
+    ./programs/tmux.nix
     ./programs/zsh
     ./programs/nushell
     ./programs/claude-code.nix
