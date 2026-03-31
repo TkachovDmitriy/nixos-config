@@ -6,9 +6,12 @@
 
   imports = [
     ./programs/wezterm.nix
-    ./programs/zsh  
+    ./programs/zsh
+    ./programs/nushell
     ./programs/claude-code.nix
     ./programs/zen-browser.nix
+    ./programs/node.nix
+    ./programs/zed.nix
   ];
 
   dconf.settings = {

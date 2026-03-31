@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   programs.fzf = {
     enable               = true;
@@ -9,14 +9,15 @@
     plugins = [
       {
         name = "zsh-history-substring-search";
-        src  = pkgs.zsh-history-substring-search;
+        src  = "${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search";
       }
     ];
 
-    initContent = ''
-      # Має бути ПІСЛЯ завантаження плагіну
+    initContent = lib.mkAfter ''
       bindkey '^[[A' history-substring-search-up
       bindkey '^[[B' history-substring-search-down
+      bindkey '^[OA' history-substring-search-up
+      bindkey '^[OB' history-substring-search-down
 
       # Ctrl+стрілки — переміщення по словах
       bindkey '^[[1;5C' forward-word
