@@ -21,7 +21,18 @@
       tmux-thumbs
       tmux-fzf
       fzf-tmux-url
-      catppuccin
+      {
+        plugin = catppuccin;
+        extraConfig = ''
+          set -g @catppuccin_flavor "mocha"
+          set -g @catppuccin_window_status_style "rounded"
+          set -g @catppuccin_window_default_fill "number"
+          set -g @catppuccin_window_default_text "#W"
+          set -g @catppuccin_window_current_fill "number"
+          set -g @catppuccin_window_current_text "#W#{?window_zoomed_flag, 󰁌 ,}"
+          set -g @catppuccin_window_number_position "right"
+        '';
+      }
       vim-tmux-navigator
     ];
 
@@ -48,14 +59,7 @@
       set -g @continuum-restore 'on'
       set -g @resurrect-strategy-nvim 'session'
 
-      # ── Catppuccin theme (v2) ─────────────────────────────────────────────
-      set -g @catppuccin_flavor "mocha"
-      set -g @catppuccin_window_status_style "rounded"
-      set -g @catppuccin_window_default_fill "number"
-      set -g @catppuccin_window_default_text "#W"
-      set -g @catppuccin_window_current_fill "number"
-      set -g @catppuccin_window_current_text "#W#{?window_zoomed_flag, 󰁌 ,}"
-      set -g @catppuccin_window_number_position "right"
+      # ── Status bar (set after catppuccin plugin runs) ─────────────────────
       set -g status-style bg=default
 
       set -g status-left-length 100
