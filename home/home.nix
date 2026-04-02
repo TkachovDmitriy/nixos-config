@@ -5,6 +5,9 @@
   home.stateVersion  = "25.11";
 
   imports = [
+    ./programs/cli-tools.nix
+    ./programs/zoxide.nix
+    ./programs/carapace.nix
     ./programs/wezterm.nix
     ./programs/tmux.nix
     ./programs/zsh

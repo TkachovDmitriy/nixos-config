@@ -10,17 +10,6 @@
     ./aliases/nixos.nix
   ];
 
-  home.packages = with pkgs; [
-    eza
-    bat
-    fd
-    ripgrep
-    btop
-    jq
-    delta
-    fzf
-  ];
-
   programs.zsh = {
     enable                    = true;
     autosuggestion.enable     = true;

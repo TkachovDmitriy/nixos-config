@@ -22,18 +22,13 @@
       config.window_decorations = "RESIZE"
       config.window_padding     = { left = 16, right = 16, top = 12, bottom = 12 }
 
-      -- Tab bar
-      config.use_fancy_tab_bar          = true
-      config.hide_tab_bar_if_only_one_tab = false
-      config.tab_bar_at_bottom          = false
-      config.tab_max_width              = 32
+      -- Tab bar hidden; tmux manages sessions and splits
+      config.enable_tab_bar = false
 
       config.default_prog = { "${pkgs.nushell}/bin/nu" }
 
-      config.keys = {
-        { key = "t", mods = "CTRL|SHIFT", action = wezterm.action.SpawnTab "CurrentPaneDomain" },
-        { key = "d", mods = "CTRL|SHIFT", action = wezterm.action.SplitHorizontal { domain = "CurrentPaneDomain" } },
-      }
+      config.initial_cols = 200
+      config.initial_rows = 50
 
       return config
     '';
