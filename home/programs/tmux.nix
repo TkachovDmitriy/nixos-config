@@ -1,4 +1,26 @@
 { pkgs, ... }:
+let
+  tmuxInit = pkgs.writeShellScript "tmux-session-init" ''
+    SESSION=$1
+
+    # Window 1: main — split left/right
+    tmux rename-window -t "$SESSION:1" "main"
+    tmux split-window -h -t "$SESSION:1"
+    tmux select-pane -t "$SESSION:1.1"
+
+    # Window 2: work — split left/right
+    tmux new-window -t "$SESSION" -n "work"
+    tmux split-window -h -t "$SESSION:2"
+    tmux select-pane -t "$SESSION:2.1"
+
+    # Window 3: editor — open nvim
+    tmux new-window -t "$SESSION" -n "editor"
+    tmux send-keys -t "$SESSION:3" "nvim" Enter
+
+    # Land on window 1
+    tmux select-window -t "$SESSION:1"
+  '';
+in
 {
   home.packages = with pkgs; [ sesh ];
 
@@ -25,12 +47,28 @@
         plugin = catppuccin;
         extraConfig = ''
           set -g @catppuccin_flavor "mocha"
+          set -g @catppuccin_window_left_separator ""
+          set -g @catppuccin_window_right_separator " "
+          set -g @catppuccin_window_middle_separator " █"
           set -g @catppuccin_window_status_style "rounded"
           set -g @catppuccin_window_default_fill "number"
           set -g @catppuccin_window_default_text "#W"
-          set -g @catppuccin_window_current_fill "number"
-          set -g @catppuccin_window_current_text "#W#{?window_zoomed_flag, 󰁌 ,}"
+          set -g @catppuccin_window_default_color "#{@thm_overlay_0}"
+          set -g @catppuccin_window_default_background "#{@thm_surface_0}"
+          set -g @catppuccin_window_current_fill "all"
+          set -g @catppuccin_window_current_text "#W#{?window_zoomed_flag,(),}"
+          set -g @catppuccin_window_current_color "#{@thm_blue}"
+          set -g @catppuccin_window_current_background "#{@thm_crust}"
           set -g @catppuccin_window_number_position "right"
+
+          set -g @catppuccin_status_modules_right "directory"
+          set -g @catppuccin_status_modules_left "session"
+          set -g @catppuccin_status_left_separator  " "
+          set -g @catppuccin_status_right_separator " "
+          set -g @catppuccin_status_right_separator_inverse "no"
+          set -g @catppuccin_status_fill "icon"
+          set -g @catppuccin_status_connect_separator "no"
+          set -g @catppuccin_directory_text "#{b:pane_current_path}"
         '';
       }
       vim-tmux-navigator
@@ -50,6 +88,7 @@
       # Pane borders
       set -g pane-active-border-style 'fg=magenta,bg=default'
       set -g pane-border-style 'fg=brightblack,bg=default'
+      set -g pane-border-format " #{pane_index} #{pane_current_command} "
 
       # fzf-url
       set -g @fzf-url-fzf-options '-p 60%,30% --prompt="   " --border-label=" Open URL "'
@@ -60,12 +99,16 @@
       set -g @resurrect-strategy-nvim 'session'
 
       # ── Status bar (set after catppuccin plugin runs) ─────────────────────
+      set -g window-status-separator " "
       set -g status-style bg=default
-
       set -g status-left-length 100
       set -g status-right-length 100
+
       set -g status-left "#{E:@catppuccin_status_session}"
-      set -g status-right "#{E:@catppuccin_status_application}#{E:@catppuccin_status_date_time}#{E:@catppuccin_status_directory}"
+      set -g status-right "#{E:@catppuccin_status_directory}"
+
+      # ── Auto-layout on every new session ─────────────────────────────────
+      set-hook -g after-new-session 'run-shell "${tmuxInit} #{session_name}"'
 
       # ── sesh session picker (prefix + T) ──────────────────────────────────
       bind-key T run-shell "sesh connect $(
@@ -85,6 +128,7 @@
       # ── Keybindings ───────────────────────────────────────────────────────
       bind ^X lock-server
       bind ^C new-window -c "$HOME"
+      bind t new-window -c "$HOME"
       bind ^D detach
       bind * list-clients
 

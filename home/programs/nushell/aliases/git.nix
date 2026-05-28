@@ -87,12 +87,16 @@
 
   # Aliases that need the current branch name
   programs.nushell.extraConfig = ''
+    def "gc!" [] { git commit -v --amend }
+    def "gca!" [] { git commit -v -a --amend }
+
     def git-current-branch [] {
       git branch --show-current | str trim
     }
 
     def ggpull [] { git pull origin (git-current-branch) }
     def ggpush [] { git push origin (git-current-branch) }
+    def ggpf   [] { git push --force-with-lease origin (git-current-branch) }
     def gpsup  [] { git push --set-upstream origin (git-current-branch) }
 
     # cd to git repo root

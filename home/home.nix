@@ -5,17 +5,20 @@
   home.stateVersion  = "25.11";
 
   imports = [
+    ./programs/starship.nix
     ./programs/cli-tools.nix
     ./programs/zoxide.nix
     ./programs/carapace.nix
     ./programs/wezterm.nix
-    ./programs/tmux.nix
-    ./programs/zsh
+    ./programs/tmux
     ./programs/nushell
     ./programs/claude-code.nix
     ./programs/zen-browser.nix
     ./programs/node.nix
     ./programs/zed.nix
+    ./programs/atuin.nix
+    ./programs/yazi.nix
+    ./programs/neovim.nix
   ];
 
   dconf.settings = {

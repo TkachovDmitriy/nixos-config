@@ -1,7 +1,5 @@
 { pkgs, ... }:
 {
-  home.packages = with pkgs; [ jetbrains-mono ];
-
   programs.wezterm = {
     enable = true;
     extraConfig = ''
@@ -9,7 +7,10 @@
       local config  = wezterm.config_builder()
 
       -- Font
-      config.font      = wezterm.font("JetBrains Mono")
+      config.font      = wezterm.font_with_fallback({
+        "FiraCode Nerd Font Mono",
+        { family = "Symbols Nerd Font Mono", scale = 1.2 },
+      })
       config.font_size = 13.0
 
       config.color_scheme = "Catppuccin Mocha"
@@ -29,6 +30,11 @@
 
       config.initial_cols = 200
       config.initial_rows = 50
+
+      -- Smooth cursor
+      config.animation_fps        = 60
+      config.cursor_blink_ease_in  = 'EaseIn'
+      config.cursor_blink_ease_out = 'EaseOut'
 
       return config
     '';
