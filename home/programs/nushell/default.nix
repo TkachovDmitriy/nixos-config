@@ -5,6 +5,7 @@
     ./aliases/git.nix
     ./aliases/docker.nix
     ./aliases/nixos.nix
+    ./cheatsheet.nix
   ];
 
   programs.nushell = {

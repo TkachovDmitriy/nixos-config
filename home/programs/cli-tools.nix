@@ -9,5 +9,6 @@
     jq
     delta
     fzf
+    lazydocker
   ];
 }

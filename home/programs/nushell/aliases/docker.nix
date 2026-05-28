@@ -14,5 +14,6 @@
     dlog   = "docker logs -f";
     dprune = "docker system prune -af";
     dvp    = "docker volume prune";
+    ld     = "lazydocker";
   };
 }
