@@ -10,6 +10,8 @@
     ./modules/users.nix
     ./modules/docker.nix
     ./modules/packages.nix
+    ./modules/fonts.nix
+    ./modules/nix-ld.nix
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
