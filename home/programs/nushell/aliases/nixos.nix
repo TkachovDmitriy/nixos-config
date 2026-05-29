@@ -9,7 +9,7 @@
   # cd-based commands need --env flag
   programs.nushell.extraConfig = ''
     def nix-cleanup [keep: int = 4] {
-      sudo nix-env --delete-generations $"+($keep)"
+      sudo nix-env -p /nix/var/nix/profiles/system --delete-generations $"+($keep)"
       sudo nix-collect-garbage
     }
 
