@@ -93,6 +93,8 @@
 
     def ggpull [] { git pull origin (git-current-branch) }
     def ggpush [] { git push origin (git-current-branch) }
+    def ggp    [] { git push origin (git-current-branch) }
+    def ggpf   [] { git push --force-with-lease origin (git-current-branch) }
     def gpsup  [] { git push --set-upstream origin (git-current-branch) }
 
     # cd to git repo root
