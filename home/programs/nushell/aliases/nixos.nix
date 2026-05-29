@@ -1,12 +1,18 @@
 { ... }:
 {
   programs.nushell.shellAliases = {
-    rebuild = "sudo nixos-rebuild switch --flake ~/.config/nix-config#nixos";
-    cleanup = "sudo nix-collect-garbage -d";
+    rebuild      = "sudo nixos-rebuild switch --flake ~/.config/nix-config#nixos";
+    rebuild-boot = "sudo nixos-rebuild boot --flake ~/.config/nix-config#nixos";
+    cleanup      = "sudo nix-collect-garbage -d";
   };
 
   # cd-based commands need --env flag
   programs.nushell.extraConfig = ''
+    def nix-cleanup [keep: int = 4] {
+      sudo nix-env --delete-generations +$keep
+      sudo nix-collect-garbage
+    }
+
     def --env nixedit [] { cd ~/.config/nix-config }
 
     def --env update [] {
