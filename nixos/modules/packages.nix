@@ -26,6 +26,7 @@
     # Communication
     telegram-desktop
     slack
+    discord
 
     # GNOME
     gnome-tweaks
