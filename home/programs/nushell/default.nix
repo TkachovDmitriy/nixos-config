@@ -18,6 +18,7 @@
 
     extraConfig = ''
       $env.config.show_banner = false
+      $env.LIBVIRT_DEFAULT_URI = "qemu:///system"
 
       $env.config.history = {
         max_size: 50000
