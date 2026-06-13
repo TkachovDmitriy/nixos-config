@@ -2,7 +2,10 @@
 {
   virtualisation.libvirtd = {
     enable = true;
-    qemu.runAsRoot = false;
+    qemu = {
+      runAsRoot = false;
+      ovmf.enable = true;
+    };
   };
 
   programs.virt-manager.enable = true;
