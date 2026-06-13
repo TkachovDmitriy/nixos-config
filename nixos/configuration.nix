@@ -9,6 +9,7 @@
     ./modules/sound.nix
     ./modules/users.nix
     ./modules/docker.nix
+    ./modules/virtualisation.nix
     ./modules/packages.nix
   ];
 

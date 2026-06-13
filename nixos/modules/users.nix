@@ -5,7 +5,7 @@
   users.users.td = {
     isNormalUser = true;
     description  = "Tiny Dev";
-    extraGroups  = [ "networkmanager" "wheel" "docker" ];
+    extraGroups  = [ "networkmanager" "wheel" "docker" "libvirtd" "kvm" ];
     shell        = pkgs.zsh;
   };
 
