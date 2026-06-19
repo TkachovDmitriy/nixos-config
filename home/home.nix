@@ -1,4 +1,4 @@
-{ config, pkgs, zen-browser, claude-code-nix, system, ... }:
+{ config, pkgs, zen-browser, claude-code-nix, hunk, system, ... }:
 {
   home.username      = "td";
   home.homeDirectory = "/home/td";
@@ -13,6 +13,7 @@
     ./programs/zsh
     ./programs/nushell
     ./programs/claude-code.nix
+    ./programs/hunk.nix
     ./programs/zen-browser.nix
     ./programs/node.nix
     ./programs/zed.nix
