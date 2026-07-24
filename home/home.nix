@@ -13,7 +13,7 @@
     ./programs/zsh
     ./programs/nushell
     ./programs/claude-code.nix
-    ./programs/hunk.nix
+    # ./programs/hunk.nix  # temporarily disabled: bun2nix evaluates x86_64-darwin, which nixpkgs 26.11 dropped
     ./programs/zen-browser.nix
     ./programs/node.nix
     ./programs/zed.nix
