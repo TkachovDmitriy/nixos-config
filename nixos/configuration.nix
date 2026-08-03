@@ -10,6 +10,7 @@
     ./modules/users.nix
     ./modules/docker.nix
     ./modules/virtualisation.nix
+    ./modules/gaming.nix
     ./modules/packages.nix
   ];
 
