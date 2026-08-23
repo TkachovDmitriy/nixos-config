@@ -8,6 +8,13 @@
     la = "eza -a --icons";
     cat = "bat";
     catp = "bat -p";
+    fetch = "fastfetch";
+    matrix = "unimatrix";
+    pipes = "pipes-rs";
+    bonsai = "cbonsai";
+    music = "cava";
+    clock = "tty-clock";
+    repo = "onefetch";
     ".." = "cd ..";
     "..." = "cd ../..";
     "...." = "cd ../../..";
