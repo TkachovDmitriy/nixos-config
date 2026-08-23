@@ -25,5 +25,14 @@
       extended = true;
     };
 
+    initContent = ''
+      _caelestia_emit_sequences() {
+        if [[ -r "$HOME/.local/state/caelestia/sequences.txt" ]]; then
+          command cat "$HOME/.local/state/caelestia/sequences.txt"
+        fi
+      }
+      precmd_functions+=( _caelestia_emit_sequences )
+    '';
+
   };
 }

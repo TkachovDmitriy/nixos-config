@@ -21,8 +21,18 @@ let
     name = "terminal"
     auto_switch = false
 
+    [terminal]
+    default_shell = "${pkgs.nushell}/bin/nu"
+
     [theme.custom]
     panel_bg = "reset"
+    surface0 = "__HERDR_SURFACE_CONTAINER__"
+    surface1 = "__HERDR_SURFACE_HIGH__"
+    surface_dim = "__HERDR_SURFACE_DIM__"
+    text = "__HERDR_TEXT__"
+    subtext0 = "__HERDR_SUBTEXT__"
+    overlay0 = "__HERDR_OUTLINE__"
+    red = "__HERDR_ERROR__"
   '';
 
   herdrThemeSync = pkgs.writeShellApplication {
@@ -37,9 +47,27 @@ let
       scheme_file="${config.xdg.configHome}/hypr/scheme/current.lua"
       config_file="${config.xdg.configHome}/herdr/config.toml"
       accent=""
+      surface_container=""
+      surface_high=""
+      surface_dim=""
+      text=""
+      subtext=""
+      outline=""
+      error=""
+
+      scheme_color() {
+        sed -n "s/^[[:space:]]*$1[[:space:]]*=[[:space:]]*\"\([0-9A-Fa-f]\{6\}\)\".*/\1/p" "$scheme_file" | head -n 1
+      }
 
       if [ -f "$scheme_file" ]; then
         accent="$(sed -n 's/^[[:space:]]*primary[[:space:]]*=[[:space:]]*"\([0-9A-Fa-f]\{6\}\)".*/\1/p' "$scheme_file" | head -n 1)"
+        surface_container="$(scheme_color surfaceContainer)"
+        surface_high="$(scheme_color surfaceContainerHigh)"
+        surface_dim="$(scheme_color surfaceDim)"
+        text="$(scheme_color onSurface)"
+        subtext="$(scheme_color onSurfaceVariant)"
+        outline="$(scheme_color outline)"
+        error="$(scheme_color error)"
       fi
 
       # Keep Herdr valid during first login, before Caelestia has generated a scheme.
@@ -47,8 +75,33 @@ let
         accent="89b4fa"
       fi
 
+      for value_name in surface_container surface_high surface_dim text subtext outline error; do
+        value="$(eval "printf '%s' \"\$$value_name\"")"
+        if ! printf '%s' "$value" | grep -Eq '^[0-9A-Fa-f]{6}$'; then
+          case "$value_name" in
+            surface_container) value="05070a" ;;
+            surface_high) value="07090d" ;;
+            surface_dim) value="020305" ;;
+            text) value="e3e5ef" ;;
+            subtext) value="a8abb5" ;;
+            outline) value="72757e" ;;
+            error) value="fa746f" ;;
+          esac
+          eval "$value_name=\$value"
+        fi
+      done
+
       install -d "$(dirname "$config_file")"
-      sed "s|__HERDR_PRIMARY__|#$accent|" "${herdrConfigTemplate}" > "$config_file"
+      sed \
+        -e "s|__HERDR_PRIMARY__|#$accent|" \
+        -e "s|__HERDR_SURFACE_CONTAINER__|#$surface_container|" \
+        -e "s|__HERDR_SURFACE_HIGH__|#$surface_high|" \
+        -e "s|__HERDR_SURFACE_DIM__|#$surface_dim|" \
+        -e "s|__HERDR_TEXT__|#$text|" \
+        -e "s|__HERDR_SUBTEXT__|#$subtext|" \
+        -e "s|__HERDR_OUTLINE__|#$outline|" \
+        -e "s|__HERDR_ERROR__|#$error|" \
+        "${herdrConfigTemplate}" > "$config_file"
 
       ${lib.getExe herdrPackage} server reload-config >/dev/null 2>&1 || true
     '';
@@ -74,7 +127,7 @@ in
     };
     Path = {
       PathChanged = "${config.xdg.configHome}/hypr/scheme/current.lua";
-      Unit = "herdr-theme-sync.service";
+      Unit = "herdrThemeSync.service";
     };
     Install.WantedBy = [ "default.target" ];
   };
