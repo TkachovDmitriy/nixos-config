@@ -7,6 +7,12 @@
     la   = "eza -a --icons";
     cat  = "bat";
     catp = "bat -p";
+    matrix = "unimatrix";
+    pipes  = "pipes-rs";
+    bonsai = "cbonsai";
+    music  = "cava";
+    clock  = "tty-clock";
+    repo   = "onefetch";
   };
 
   # dot-navigation needs def --env so cd affects the caller's scope
