@@ -4,14 +4,14 @@
 
   programs.tmux = {
     enable = true;
-    shell        = "${pkgs.nushell}/bin/nu";
-    terminal     = "screen-256color";
+    shell = "${pkgs.nushell}/bin/nu";
+    terminal = "screen-256color";
     historyLimit = 1000000;
-    keyMode      = "vi";
-    escapeTime   = 0;
-    baseIndex    = 1;
-    prefix       = "C-a";
-    mouse        = true;
+    keyMode = "vi";
+    escapeTime = 0;
+    baseIndex = 1;
+    prefix = "C-a";
+    mouse = true;
 
     plugins = with pkgs.tmuxPlugins; [
       sensible

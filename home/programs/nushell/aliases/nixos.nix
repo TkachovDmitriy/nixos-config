@@ -1,9 +1,10 @@
 { ... }:
 {
   programs.nushell.shellAliases = {
-    rebuild      = "sudo nixos-rebuild switch --flake ~/.config/nix-config#nixos";
+    rebuild = "sudo nixos-rebuild switch --flake ~/.config/nix-config#nixos";
+    rebuild-caelestia = "sudo nixos-rebuild switch --flake ~/.config/nix-config#nixos";
     rebuild-boot = "sudo nixos-rebuild boot --flake ~/.config/nix-config#nixos";
-    cleanup      = "sudo nix-collect-garbage -d";
+    cleanup = "sudo nix-collect-garbage -d";
   };
 
   # cd-based commands need --env flag

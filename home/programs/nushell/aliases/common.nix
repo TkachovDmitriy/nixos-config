@@ -1,18 +1,18 @@
 { ... }:
 {
   programs.nushell.shellAliases = {
-    ll   = "eza -la --icons --git";
-    lt   = "eza --tree --icons --level=2";
-    lta  = "eza --tree --icons --level=2 -a";
-    la   = "eza -a --icons";
-    cat  = "bat";
+    ll = "eza -la --icons --git";
+    lt = "eza --tree --icons --level=2";
+    lta = "eza --tree --icons --level=2 -a";
+    la = "eza -a --icons";
+    cat = "bat";
     catp = "bat -p";
     matrix = "unimatrix";
-    pipes  = "pipes-rs";
+    pipes = "pipes-rs";
     bonsai = "cbonsai";
-    music  = "cava";
-    clock  = "tty-clock";
-    repo   = "onefetch";
+    music = "cava";
+    clock = "tty-clock";
+    repo = "onefetch";
   };
 
   # dot-navigation needs def --env so cd affects the caller's scope

@@ -3,11 +3,11 @@
   services.xserver.enable = true;
 
   # Нові правильні шляхи (не через xserver)
-  services.displayManager.gdm.enable   = true;
+  services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
 
   services.xserver.xkb = {
-    layout  = "us,ua";
+    layout = "us,ua";
     variant = "";
     options = "grp:alt_shift_toggle";
   };

@@ -15,7 +15,10 @@
     ./modules/caelestia
   ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   nixpkgs.config.allowUnfree = true;
   programs.nix-ld.enable = true;
   system.stateVersion = "25.11";

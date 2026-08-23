@@ -3,7 +3,7 @@
   environment.systemPackages = with pkgs; [
     # Gaming / Wine — Project Ascension launcher
     lutris
-    wineWow64Packages.stableFull   # Wine 11 (64+32-bit)
+    wineWow64Packages.stableFull # Wine 11 (64+32-bit)
     winetricks
     dxvk
     gamescope

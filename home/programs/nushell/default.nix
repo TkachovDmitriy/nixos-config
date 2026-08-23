@@ -11,9 +11,9 @@
     enable = true;
 
     plugins = with pkgs.nushellPlugins; [
-      gstat    # structured git status (use `gstat` in pipelines)
-      formats  # extra file format support (parquet, ods, etc.)
-      query    # query structured data / web pages
+      gstat # structured git status (use `gstat` in pipelines)
+      formats # extra file format support (parquet, ods, etc.)
+      query # query structured data / web pages
     ];
 
     extraConfig = ''

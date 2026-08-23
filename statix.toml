@@ -1,0 +1,4 @@
+# NixOS modules conventionally use empty argument patterns and dotted keys.
+# Keep Statix focused on warnings that are meaningful for this repository.
+disabled = ["empty_pattern", "repeated_keys"]
+ignore = [".direnv"]

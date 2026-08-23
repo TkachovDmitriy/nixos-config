@@ -1,8 +1,16 @@
-{ config, pkgs, zen-browser, claude-code-nix, hunk, system, ... }:
 {
-  home.username      = "td";
+  config,
+  pkgs,
+  zen-browser,
+  claude-code-nix,
+  hunk,
+  system,
+  ...
+}:
+{
+  home.username = "td";
   home.homeDirectory = "/home/td";
-  home.stateVersion  = "25.11";
+  home.stateVersion = "25.11";
 
   imports = [
     ./programs/cli-tools.nix
@@ -23,7 +31,7 @@
 
   dconf.settings = {
     "org/gnome/desktop/default-applications/terminal" = {
-      exec     = "wezterm";
+      exec = "wezterm";
       exec-arg = "";
     };
   };

@@ -1,8 +1,8 @@
 { ... }:
 {
   programs.starship = {
-    enable                  = true;
-    enableZshIntegration    = true;
+    enable = true;
+    enableZshIntegration = true;
     enableNushellIntegration = true;
     settings = {
       add_newline = true;
@@ -14,44 +14,44 @@
 
       character = {
         success_symbol = "[❯](bold green)";
-        error_symbol   = "[❯](bold red)";
+        error_symbol = "[❯](bold red)";
       };
 
       directory = {
         truncation_length = 3;
-        truncate_to_repo  = true;
-        style             = "bold cyan";
+        truncate_to_repo = true;
+        style = "bold cyan";
       };
 
       git_branch = {
         symbol = " ";
-        style  = "bold purple";
+        style = "bold purple";
       };
 
       git_status = {
         conflicted = "⚡";
-        ahead      = "⇡\${count}";
-        behind     = "⇣\${count}";
-        diverged   = "⇕⇡\${ahead_count}⇣\${behind_count}";
-        modified   = "!";
-        untracked  = "?";
-        staged     = "+";
-        deleted    = "✘";
+        ahead = "⇡\${count}";
+        behind = "⇣\${count}";
+        diverged = "⇕⇡\${ahead_count}⇣\${behind_count}";
+        modified = "!";
+        untracked = "?";
+        staged = "+";
+        deleted = "✘";
       };
 
       nodejs = {
         symbol = " ";
-        style  = "bold green";
+        style = "bold green";
       };
 
       rust = {
         symbol = " ";
-        style  = "bold orange";
+        style = "bold orange";
       };
 
       docker_context = {
         symbol = " ";
-        style  = "bold blue";
+        style = "bold blue";
       };
     };
   };
