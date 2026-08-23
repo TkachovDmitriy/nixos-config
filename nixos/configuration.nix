@@ -12,6 +12,7 @@
     ./modules/virtualisation.nix
     ./modules/gaming.nix
     ./modules/packages.nix
+    ./modules/caelestia
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

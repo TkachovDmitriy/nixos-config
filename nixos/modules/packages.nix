@@ -26,7 +26,7 @@
     # Communication
     telegram-desktop
     slack
-    discord
+    (discord.override { withVencord = true; })
 
     # GNOME
     gnome-tweaks
