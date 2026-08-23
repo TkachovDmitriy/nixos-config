@@ -15,5 +15,8 @@
     [theme]
     name = "terminal"
     auto_switch = false
+
+    [theme.custom]
+    panel_bg = "reset"
   '';
 }
