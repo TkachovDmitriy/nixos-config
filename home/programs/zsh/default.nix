@@ -25,10 +25,5 @@
       extended = true;
     };
 
-    initContent = ''
-      if [[ -o interactive ]]; then
-        fastfetch
-      fi
-    '';
   };
 }
