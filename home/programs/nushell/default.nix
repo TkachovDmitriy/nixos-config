@@ -43,6 +43,11 @@
         ^cat $caelestia_sequences
       }
 
+      # Re-emit the palette when Caelestia changes theme in an open shell.
+      $env.config.hooks.pre_prompt = ($env.config.hooks.pre_prompt | append {
+        || if ($caelestia_sequences | path exists) { ^cat $caelestia_sequences }
+      })
+
     '';
   };
 }

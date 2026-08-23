@@ -21,9 +21,11 @@ let
     name = "terminal"
     auto_switch = false
 
+    [terminal]
+    default_shell = "${pkgs.nushell}/bin/nu"
+
     [theme.custom]
     panel_bg = "reset"
-    sidebar_bg = "__HERDR_SURFACE__"
     surface0 = "__HERDR_SURFACE_CONTAINER__"
     surface1 = "__HERDR_SURFACE_HIGH__"
     surface_dim = "__HERDR_SURFACE_DIM__"
@@ -45,7 +47,6 @@ let
       scheme_file="${config.xdg.configHome}/hypr/scheme/current.lua"
       config_file="${config.xdg.configHome}/herdr/config.toml"
       accent=""
-      surface=""
       surface_container=""
       surface_high=""
       surface_dim=""
@@ -60,7 +61,6 @@ let
 
       if [ -f "$scheme_file" ]; then
         accent="$(sed -n 's/^[[:space:]]*primary[[:space:]]*=[[:space:]]*"\([0-9A-Fa-f]\{6\}\)".*/\1/p' "$scheme_file" | head -n 1)"
-        surface="$(scheme_color surface)"
         surface_container="$(scheme_color surfaceContainer)"
         surface_high="$(scheme_color surfaceContainerHigh)"
         surface_dim="$(scheme_color surfaceDim)"
@@ -75,11 +75,10 @@ let
         accent="89b4fa"
       fi
 
-      for value_name in surface surface_container surface_high surface_dim text subtext outline error; do
+      for value_name in surface_container surface_high surface_dim text subtext outline error; do
         value="$(eval "printf '%s' \"\$$value_name\"")"
         if ! printf '%s' "$value" | grep -Eq '^[0-9A-Fa-f]{6}$'; then
           case "$value_name" in
-            surface) value="020305" ;;
             surface_container) value="05070a" ;;
             surface_high) value="07090d" ;;
             surface_dim) value="020305" ;;
@@ -95,7 +94,6 @@ let
       install -d "$(dirname "$config_file")"
       sed \
         -e "s|__HERDR_PRIMARY__|#$accent|" \
-        -e "s|__HERDR_SURFACE__|#$surface|" \
         -e "s|__HERDR_SURFACE_CONTAINER__|#$surface_container|" \
         -e "s|__HERDR_SURFACE_HIGH__|#$surface_high|" \
         -e "s|__HERDR_SURFACE_DIM__|#$surface_dim|" \
