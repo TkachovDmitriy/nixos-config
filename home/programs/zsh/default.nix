@@ -11,18 +11,18 @@
   ];
 
   programs.zsh = {
-    enable                    = true;
-    autosuggestion.enable     = true;
+    enable = true;
+    autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
-    enableCompletion          = true;
+    enableCompletion = true;
 
     history = {
-      size        = 50000;
-      save        = 50000;
-      ignoreDups  = true;
+      size = 50000;
+      save = 50000;
+      ignoreDups = true;
       ignoreSpace = true;
-      share       = true;
-      extended    = true;
+      share = true;
+      extended = true;
     };
   };
 }

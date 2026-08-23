@@ -1,7 +1,7 @@
 { pkgs, lib, ... }:
 {
   programs.fzf = {
-    enable               = true;
+    enable = true;
     enableZshIntegration = true;
   };
 
@@ -9,7 +9,7 @@
     plugins = [
       {
         name = "zsh-history-substring-search";
-        src  = "${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search";
+        src = "${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search";
       }
     ];
 

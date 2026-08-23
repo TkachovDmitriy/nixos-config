@@ -35,26 +35,46 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, zen-browser, claude-code-nix, hunk, herdr, caelestia-shell, caelestia-dots, ... }: {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = {
-        inherit caelestia-shell caelestia-dots;
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      zen-browser,
+      claude-code-nix,
+      hunk,
+      herdr,
+      caelestia-shell,
+      caelestia-dots,
+      ...
+    }:
+    {
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-tree;
+
+      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {
+          inherit caelestia-shell caelestia-dots;
+        };
+        modules = [
+          ./nixos/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.td = import ./home/home.nix;
+            home-manager.extraSpecialArgs = {
+              inherit
+                zen-browser
+                claude-code-nix
+                hunk
+                herdr
+                ;
+              system = "x86_64-linux";
+            };
+            # overlays прибрано — zen йде через extraSpecialArgs
+          }
+        ];
       };
-      modules = [
-        ./nixos/configuration.nix
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs   = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.td        = import ./home/home.nix;
-          home-manager.extraSpecialArgs = {
-            inherit zen-browser claude-code-nix hunk herdr;
-            system = "x86_64-linux";
-          };
-          # overlays прибрано — zen йде через extraSpecialArgs
-        }
-      ];
     };
-  };
 }

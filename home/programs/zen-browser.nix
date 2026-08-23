@@ -12,7 +12,10 @@
       exec = ''zen --no-remote -P "work-zen-profile" %U'';
       icon = "zen";
       terminal = false;
-      categories = [ "Network" "WebBrowser" ];
+      categories = [
+        "Network"
+        "WebBrowser"
+      ];
     };
 
     zen-personal = {
@@ -22,7 +25,10 @@
       exec = ''zen --no-remote -P "personal-zen-profile" %U'';
       icon = "zen";
       terminal = false;
-      categories = [ "Network" "WebBrowser" ];
+      categories = [
+        "Network"
+        "WebBrowser"
+      ];
     };
 
     zen-profile-chooser = {
@@ -32,7 +38,10 @@
       exec = "zen --no-remote --ProfileManager";
       icon = "zen";
       terminal = false;
-      categories = [ "Network" "WebBrowser" ];
+      categories = [
+        "Network"
+        "WebBrowser"
+      ];
     };
   };
 }
