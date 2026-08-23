@@ -36,6 +36,11 @@
 
       # Keep emacs-style keybindings (Ctrl+A/E/W etc.)
       $env.config.edit_mode = "emacs"
+
+      # A compact rice-style system summary for each new interactive session.
+      if $nu.is-interactive {
+        fastfetch
+      }
     '';
   };
 }
