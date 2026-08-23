@@ -74,7 +74,7 @@ in
     };
     Path = {
       PathChanged = "${config.xdg.configHome}/hypr/scheme/current.lua";
-      Unit = "herdr-theme-sync.service";
+      Unit = "herdrThemeSync.service";
     };
     Install.WantedBy = [ "default.target" ];
   };

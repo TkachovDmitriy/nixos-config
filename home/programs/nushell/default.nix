@@ -37,6 +37,12 @@
       # Keep emacs-style keybindings (Ctrl+A/E/W etc.)
       $env.config.edit_mode = "emacs"
 
+      # Caelestia emits OSC palette sequences for each new terminal session.
+      let caelestia_sequences = ($nu.home-path | path join ".local/state/caelestia/sequences.txt")
+      if ($caelestia_sequences | path exists) {
+        ^cat $caelestia_sequences
+      }
+
     '';
   };
 }

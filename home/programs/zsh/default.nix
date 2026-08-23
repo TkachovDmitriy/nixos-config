@@ -25,5 +25,11 @@
       extended = true;
     };
 
+    initContent = ''
+      if [[ -r "$HOME/.local/state/caelestia/sequences.txt" ]]; then
+        command cat "$HOME/.local/state/caelestia/sequences.txt"
+      fi
+    '';
+
   };
 }
