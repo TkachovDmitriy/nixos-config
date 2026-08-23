@@ -1,6 +1,7 @@
 { ... }:
 {
   programs.nushell.shellAliases = {
+    lg     = "lazygit";
     g      = "git";
     s      = "git status -sb";
     gs     = "git status";
