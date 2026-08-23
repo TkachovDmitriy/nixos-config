@@ -86,7 +86,10 @@
         # The CLI rewrites themes/caelestia.theme whenever the active scheme
         # changes. Keep that generated theme mutable, but declaratively select it
         # through the official Caelestia btop configuration.
-        xdg.configFile."btop/btop.conf".source = "${caelestia-dots}/btop/btop.conf";
+        xdg.configFile."btop/btop.conf" = {
+          source = "${caelestia-dots}/btop/btop.conf";
+          force = true;
+        };
 
         # The shell ships one official fallback wallpaper. Its picker scans this
         # directory by default; additional personal wallpapers can remain beside
