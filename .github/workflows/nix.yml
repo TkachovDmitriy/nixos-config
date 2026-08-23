@@ -33,7 +33,9 @@ jobs:
       - name: Run Statix
         shell: bash
         run: |
-          output="$(nix run nixpkgs#statix -- check . 2>&1)"
+          # Capture diagnostics from stdout, while leaving Nix download logs on
+          # stderr. Treat any Statix diagnostic as a CI failure.
+          output="$(nix run nixpkgs#statix -- check --format errfmt .)"
           if [[ -n "$output" ]]; then
             printf '%s\n' "$output"
             exit 1
