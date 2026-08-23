@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
+    ../zsh/starship.nix
     ./aliases/common.nix
     ./aliases/git.nix
     ./aliases/docker.nix
