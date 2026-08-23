@@ -2,7 +2,6 @@
 {
   programs.nushell.shellAliases = {
     rebuild = "sudo nixos-rebuild switch --flake ~/.config/nix-config#nixos";
-    rebuild-caelestia = "sudo nixos-rebuild switch --flake ~/.config/nix-config#nixos";
     rebuild-boot = "sudo nixos-rebuild boot --flake ~/.config/nix-config#nixos";
     cleanup = "sudo nix-collect-garbage -d";
   };
@@ -15,6 +14,12 @@
     }
 
     def --env nixedit [] { cd ~/.config/nix-config }
+
+    def restart-caelestia [] {
+      qs -c caelestia kill
+      sleep 2sec
+      caelestia shell -d
+    }
 
     def --env update [] {
       cd ~/.config/nix-config
