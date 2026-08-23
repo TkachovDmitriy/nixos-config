@@ -16,7 +16,7 @@
     def --env nixedit [] { cd ~/.config/nix-config }
 
     def restart-caelestia [] {
-      qs -c caelestia kill
+      caelestia shell -k
       sleep 2sec
       caelestia shell -d
     }
