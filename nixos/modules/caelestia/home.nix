@@ -65,7 +65,8 @@
             }
 
             start_daemon() {
-              systemctl --user stop awww.service
+              # Keep awww alive for the laptop output while Wallr owns DP-1.
+              systemctl --user start awww.service
               systemctl --user start wallr.service
               for _ in $(seq 1 40); do
                 if wallr ipc status >/dev/null 2>&1; then
