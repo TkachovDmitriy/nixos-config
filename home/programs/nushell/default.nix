@@ -39,14 +39,14 @@
       $env.config.edit_mode = "emacs"
 
       # Caelestia emits OSC palette sequences for each new terminal session.
-      let caelestia_sequences = ($nu.home-path | path join ".local/state/caelestia/sequences.txt")
+      let caelestia_sequences = ($env.HOME | path join ".local/state/caelestia/sequences.txt")
       if ($caelestia_sequences | path exists) {
         ^cat $caelestia_sequences
       }
 
       # Re-emit the palette when Caelestia changes theme in an open shell.
       $env.config.hooks.pre_prompt = ($env.config.hooks.pre_prompt | append {
-        || if ($caelestia_sequences | path exists) { ^cat $caelestia_sequences }
+        if ($caelestia_sequences | path exists) { ^cat $caelestia_sequences }
       })
 
     '';

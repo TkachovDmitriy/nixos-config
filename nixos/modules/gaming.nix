@@ -12,6 +12,10 @@
   # 32-bit graphics — required for the WoW client
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true;
+  hardware.graphics.extraPackages = with pkgs; [
+    # VAAPI HEVC decoding on the Tiger Lake Intel iGPU.
+    intel-media-driver
+  ];
 
   # Feral GameMode — better CPU governor / lower latency while gaming
   programs.gamemode.enable = true;
